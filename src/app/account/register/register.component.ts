@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { IRegisterModel } from '../models/register.model';
 import { AccountService } from '../account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent {
     resultMessage = '';
     accountService: AccountService;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router) {
         this.accountService = new AccountService(this.http, this.baseUrl);
     }
 
@@ -24,6 +25,7 @@ export class RegisterComponent {
                 (response: string) => {
                     this.resultMessage = `${response}`;
                     this.isRequesting = false;
+                    this.router.navigate(['/login']);
                 },
                 (error: HttpErrorResponse) => {
                     this.resultMessage = `${error.status} - ${error.statusText}`;
