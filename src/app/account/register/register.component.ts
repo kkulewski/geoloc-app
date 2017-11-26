@@ -21,14 +21,14 @@ export class RegisterComponent {
         if (valid) {
             this.accountService.register(value.email, value.password, value.firstName, value.lastName)
                 .subscribe(
-                    (response: string) => {
-                        this.resultMessage = `${response}`;
-                        this.isRequesting = false;
-                    },
-                    (error: HttpErrorResponse) => {
-                        this.resultMessage = `${error.status} - ${error.statusText}`;
-                        this.isRequesting = false;
-                    });
+                (response: string) => {
+                    this.resultMessage = `${response}`;
+                    this.isRequesting = false;
+                },
+                (error: HttpErrorResponse) => {
+                    this.resultMessage = `${error.status} - ${error.statusText}`;
+                    this.isRequesting = false;
+                });
         }
     }
 }

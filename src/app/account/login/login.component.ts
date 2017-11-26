@@ -38,7 +38,7 @@ export class LoginComponent {
         if (valid) {
             this.accountService.login(value.email, value.password)
                 .subscribe(
-                (response: ILoginSuccessful)  => {
+                (response: ILoginSuccessful) => {
                     localStorage.setItem('auth_token', response.auth_token);
                     localStorage.setItem('user_id', response.id);
 
