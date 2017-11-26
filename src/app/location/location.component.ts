@@ -1,26 +1,26 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-location',
     templateUrl: './location.component.html',
     styleUrls: ['./location.component.css']
-  })
+})
 export class LocationComponent {
 
     location: Location;
-    locationAvailable: boolean;
-    result = 'not run';
+    isRequesting = false;
+    resultMessage = 'not run';
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
     locate() {
         if (!navigator.geolocation) {
-            this.result = 'navigator API not available';
+            this.resultMessage = 'navigator API not available';
             return;
         }
 
-        this.result = 'reading location...';
+        this.resultMessage = 'reading location...';
         navigator.geolocation.getCurrentPosition(
             position => this.onLocateSuccess(position),
             error => this.onLocateFailure
@@ -28,7 +28,7 @@ export class LocationComponent {
     }
 
     private onLocateSuccess(position: Position) {
-        this.result = 'success';
+        this.resultMessage = 'success';
 
         this.location = new Location();
         this.location.latitude = position.coords.latitude;
@@ -43,11 +43,21 @@ export class LocationComponent {
     }
 
     private onLocateFailure() {
-        this.result = 'failure';
+        this.resultMessage = 'failure';
     }
 
     private sendLocation() {
-        this.http.post(this.baseUrl + 'api/location/send', this.location).subscribe(error => console.error(error));
+        this.isRequesting = true;
+        this.http.post(this.baseUrl + 'api/location/send', this.location)
+            .subscribe(
+            (response: string) => {
+                this.resultMessage += ` (${response})`;
+                this.isRequesting = false;
+            },
+            (error: HttpErrorResponse) => {
+                this.resultMessage += ` (${error.status} - ${error.statusText})`;
+                this.isRequesting = false;
+            });
     }
 }
 
