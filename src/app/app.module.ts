@@ -7,10 +7,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
 
 
 const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'location', component: LocationComponent }
 ];
 
@@ -19,6 +21,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
+    HomeComponent,
     LocationComponent,
   ],
   imports: [
