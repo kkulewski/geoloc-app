@@ -17,7 +17,8 @@ import { LocationComponent } from './location/location.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl }
