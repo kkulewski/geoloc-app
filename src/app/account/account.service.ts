@@ -9,4 +9,16 @@ export class AccountService {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.post(this.baseUrl + 'api/account/register', body, {headers});
     }
+
+    login(userName: string, password: string) {
+        const body = JSON.stringify({ userName, password });
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post(this.baseUrl + 'api/account/login', body, {headers});
+    }
+
+    getUserName(id: string) {
+        const body = JSON.stringify(id);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.post(this.baseUrl + 'api/account/username', body, {headers});
+    }
 }

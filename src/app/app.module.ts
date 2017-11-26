@@ -11,12 +11,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
 import { RegisterComponent } from './account/register/register.component';
+import { LoginComponent } from './account/login/login.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'location', component: LocationComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
     HomeComponent,
     LocationComponent,
     RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
