@@ -9,6 +9,10 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  username() {
+    return localStorage.getItem('user_name');
+  }
+
   ngOnInit() {
   }
 
