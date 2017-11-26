@@ -10,11 +10,10 @@
         <a class="nav-link" [routerLink]="['/location']">Location</a>
       </li>
       <li class="nav-item dropdown" ngbDropdown>
-        <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Dropdown</a>
+        <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Account</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" [routerLink]="['/register']">Register</a>
+          <a class="dropdown-item" [routerLink]="['/login']">Login</a>
         </div>
       </li>
     </ul>
