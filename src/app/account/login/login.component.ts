@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Response } from '@angular/http';
 import { ILoginModel } from '../models/login.model';
 import { AccountService } from '../account.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -38,15 +38,15 @@ export class LoginComponent {
         if (valid) {
             this.accountService.login(value.email, value.password)
                 .subscribe(
-                result => {
-                    const response = result as ILoginResponse;
+                (response: ILoginSuccessful)  => {
                     localStorage.setItem('auth_token', response.auth_token);
                     localStorage.setItem('user_id', response.id);
-                    this.resultMessage = 'ok';
+
+                    this.resultMessage = `ID = ${response.id}`;
                     this.isRequesting = false;
                 },
-                error => {
-                    this.resultMessage = ' ' + error;
+                (error: HttpErrorResponse) => {
+                    this.resultMessage = `${error.status} - ${error.statusText}`;
                     this.isRequesting = false;
                 });
         }
@@ -78,7 +78,7 @@ export class LoginComponent {
     }
 }
 
-export interface ILoginResponse {
+export interface ILoginSuccessful {
     id: string;
     auth_token: string;
 }

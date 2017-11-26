@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { Response } from '@angular/http';
 import { IRegisterModel } from '../models/register.model';
 import { AccountService } from '../account.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-register',
@@ -22,12 +21,12 @@ export class RegisterComponent {
         if (valid) {
             this.accountService.register(value.email, value.password, value.firstName, value.lastName)
                 .subscribe(
-                    (response: Response) => {
-                        this.resultMessage = ' ' + response;
+                    (response: string) => {
+                        this.resultMessage = `${response}`;
                         this.isRequesting = false;
                     },
-                    error => {
-                        this.resultMessage = ' ' + error;
+                    (error: HttpErrorResponse) => {
+                        this.resultMessage = `${error.status} - ${error.statusText}`;
                         this.isRequesting = false;
                     });
         }
