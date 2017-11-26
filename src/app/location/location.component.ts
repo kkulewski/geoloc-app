@@ -34,12 +34,12 @@ export class LocationComponent {
         this.location.latitude = position.coords.latitude;
         this.location.longitude = position.coords.longitude;
         this.location.timestamp = Date.now();
+
         const userName = localStorage.getItem('user_name');
         if (userName != null) {
             this.location.userName = userName;
+            this.sendLocation();
         }
-
-        this.sendLocation();
     }
 
     private onLocateFailure() {
