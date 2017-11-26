@@ -3,17 +3,20 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
+import { RegisterComponent } from './account/register/register.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'location', component: LocationComponent }
+  { path: 'location', component: LocationComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 
@@ -23,10 +26,12 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     LocationComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes
