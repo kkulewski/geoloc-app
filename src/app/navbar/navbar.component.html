@@ -1,5 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" [routerLink]="['/']">Geoloc</a>
+  <a class="navbar-brand" [routerLink]="['/']">
+    <div *ngIf="username()">
+      <div style="color: white; text-shadow: 0 0 10px yellowgreen, 0 0 20px green">
+        Geoloc
+      </div>
+    </div>
+    <div *ngIf="!username()">
+      <div>
+        Geoloc
+      </div>
+    </div>
+  </a>
   <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="navbarsExampleDefault"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -21,7 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link"><span class="badge badge-success">{{username()}}</span></a>
+        <a class="nav-link"><span class="badge badge-success">{{username()}}</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
