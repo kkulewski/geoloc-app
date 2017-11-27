@@ -2,11 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'app-location',
-    templateUrl: './location.component.html',
-    styleUrls: ['./location.component.css']
+    selector: 'app-locate',
+    templateUrl: './locate.component.html',
+    styleUrls: ['./locate.component.css']
 })
-export class LocationComponent {
+export class LocateComponent {
 
     location: Location;
     isRequesting = false;

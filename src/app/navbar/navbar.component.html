@@ -6,8 +6,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/location']">Location</a>
+      <li class="nav-item dropdown" ngbDropdown>
+        <a class="nav-link dropdown-toggle" id="dropdown02" ngbDropdownToggle>Location</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown02" ngbDropdownMenu>
+          <a class="dropdown-item" [routerLink]="['/locate']">Locate</a>
+        </div>
       </li>
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Account</a>

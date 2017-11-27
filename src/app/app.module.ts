@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { LocationComponent } from './location/location.component';
+import { LocateComponent } from './location//locate/locate.component';
 import { LocationsComponent } from './locations/locations.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
@@ -17,7 +17,7 @@ import { LoginComponent } from './account/login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'location', component: LocationComponent },
+  { path: 'locate', component: LocateComponent },
   { path: 'locations', component: LocationsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent }
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    LocationComponent,
+    LocateComponent,
     LocationsComponent,
     RegisterComponent,
     LoginComponent
