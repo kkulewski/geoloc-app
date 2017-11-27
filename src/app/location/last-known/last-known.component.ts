@@ -14,7 +14,7 @@ export class LastKnownLocationComponent {
 
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-    private getLocations() {
+    getLocations() {
         this.isRequesting = true;
         this.http.get(this.baseUrl + 'api/location/get/last')
             .subscribe(
