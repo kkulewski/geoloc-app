@@ -9,6 +9,8 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  isNavbarCollapsed = true;
+
   username() {
     return localStorage.getItem('user_name');
   }
