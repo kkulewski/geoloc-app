@@ -2,11 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'app-locations',
-    templateUrl: './locations.component.html',
-    styleUrls: ['./locations.component.css']
+    selector: 'app-last-known',
+    templateUrl: './last-known.component.html',
+    styleUrls: ['./last-known.component.css']
 })
-export class LocationsComponent {
+export class LastKnownLocationComponent {
 
     locations: Location[];
     isRequesting = false;
