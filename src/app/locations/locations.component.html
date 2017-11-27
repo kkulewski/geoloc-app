@@ -1,0 +1,27 @@
+<h1>Last known locations</h1>
+<div *ngIf="resultMessage">
+    <p>Result: {{resultMessage}}</p>
+</div>
+<button class="btn btn-success" (click)="getLocations()">Load locations</button>
+<br>
+<div *ngIf="locations">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Timestamp</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let location of locations"> 
+            <td>{{location.UserName}}</td>
+            <td>{{location.Timestamp}}</td>
+            <td>{{location.Latitude}}</td>
+            <td>{{location.Longitude}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>available: {{locations.length}}</p>
+</div>

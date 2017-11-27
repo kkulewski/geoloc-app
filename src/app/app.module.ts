@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
+import { LocationsComponent } from './locations/locations.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 
@@ -17,6 +18,7 @@ import { LoginComponent } from './account/login/login.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'location', component: LocationComponent },
+  { path: 'locations', component: LocationsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent }
 ];
@@ -28,6 +30,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     LocationComponent,
+    LocationsComponent,
     RegisterComponent,
     LoginComponent
   ],
