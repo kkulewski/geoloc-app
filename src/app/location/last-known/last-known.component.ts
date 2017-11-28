@@ -8,7 +8,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class LastKnownLocationComponent {
 
-    locations: Location.Models.LocationModel[];
+    locations: Models.Location.LocationModel[];
     isRequesting = false;
     resultMessage;
 
@@ -18,7 +18,7 @@ export class LastKnownLocationComponent {
         this.isRequesting = true;
         this.http.get(this.baseUrl + 'api/location/get/last')
             .subscribe(
-            (response: Location.Models.LocationModel[]) => {
+            (response: Models.Location.LocationModel[]) => {
                 this.locations = response;
                 this.isRequesting = false;
             },
