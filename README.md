@@ -6,6 +6,8 @@ Angular 5.0.3 with Bootstrap4 client app.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
+Run `ng serve --host 0.0.0.0 --prod` for production server with remote access.
+
 ## Build
 
 Run `ng build` to build the project.
