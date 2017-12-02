@@ -1,0 +1,8 @@
+<div #mapDiv id="map"></div>
+<div class="locations" *ngFor="let location of locations">
+    <div class="box" (click)="locate(location)">
+            {{location.UserName}}<br />
+            {{location.Latitude}}<br />
+            {{location.Longitude}}<br />
+    </div>
+</div>

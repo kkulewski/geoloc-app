@@ -1,8 +1,8 @@
 module Models.Location {
     export interface LocationModel {
-        longitude: number;
-        latitude: number;
-        timestamp: number;
-        userName?: string;
+        Longitude: number;
+        Latitude: number;
+        Timestamp: number;
+        UserName?: string;
     }
 }

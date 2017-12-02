@@ -31,12 +31,12 @@ export class LocateComponent {
         this.resultMessage = 'success';
         const userName = localStorage.getItem('user_name');
         this.location = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            timestamp: Date.now()
+            Latitude: position.coords.latitude,
+            Longitude: position.coords.longitude,
+            Timestamp: Date.now()
         };
         if (userName) {
-            this.location.userName = userName;
+            this.location.UserName = userName;
             this.sendLocation();
         }
     }

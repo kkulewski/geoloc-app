@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { LocationService } from '../../location.service';
 
 @Component({
     selector: 'app-last-known',
@@ -12,19 +13,9 @@ export class LastKnownLocationComponent {
     isRequesting = false;
     resultMessage;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private locationService: LocationService) { }
 
     getLocations() {
-        this.isRequesting = true;
-        this.http.get(this.baseUrl + 'api/location/get/last')
-            .subscribe(
-            (response: Models.Location.LocationModel[]) => {
-                this.locations = response;
-                this.isRequesting = false;
-            },
-            (error: HttpErrorResponse) => {
-                this.resultMessage += ` (${error.status} - ${error.statusText})`;
-                this.isRequesting = false;
-            });
+        this.locationService.getLastLocations().subscribe(locations => this.locations = locations);
     }
 }
