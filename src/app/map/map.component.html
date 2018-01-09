@@ -1,13 +1,15 @@
-<div class="row">
-    <div class="col-sm justify-content-md-center" #mapDiv id="map"></div>
-</div>
-<div class="row">
-    <div *ngFor="let location of locations">
-        <div class="col box" (click)="locate(location)">
-            {{location.UserName}}
-            <br /> {{location.Latitude}}
-            <br /> {{location.Longitude}}
-            <br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm justify-content-md-center" #mapDiv id="map"></div>
+    </div>
+    <div class="row">
+        <div *ngFor="let location of locations">
+            <div class="col box" (click)="locate(location)">
+                {{location.UserName}}
+                <br /> {{location.latitude}}
+                <br /> {{location.longitude}}
+                <br />
+            </div>
         </div>
     </div>
 </div>

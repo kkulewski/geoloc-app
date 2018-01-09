@@ -7,7 +7,7 @@ export class LocationService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  public getLastLocations(): Observable<Models.Location.LocationModel[]> {
-    return this.http.get<Models.Location.LocationModel[]>(this.baseUrl + 'api/location/get/last');
+  public getLastLocations(): Observable<Models.Location[]> {
+    return this.http.get<Models.Location[]>(this.baseUrl + 'api/location/get/last/');
   }
 }

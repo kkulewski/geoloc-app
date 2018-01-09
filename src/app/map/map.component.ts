@@ -13,10 +13,10 @@ export class MapComponent implements AfterViewInit {
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
-  private locations: Models.Location.LocationModel[];
+  private locations: Models.Location[];
 
-  locate(location: Models.Location.LocationModel) {
-    this.map.setCenter(new google.maps.LatLng(location.Latitude, location.Longitude));
+  locate(location: Models.Location) {
+    this.map.setCenter(new google.maps.LatLng(location.latitude, location.longitude));
   }
 
   initMap() {
@@ -27,7 +27,7 @@ export class MapComponent implements AfterViewInit {
     this.locationService.getLastLocations().subscribe(locations => {
       this.locations = locations;
       for (let location of locations) {
-        var pos = { lat: location.Latitude, lng: location.Longitude };
+        var pos = { lat: location.latitude, lng: location.longitude };
         var marker = new google.maps.Marker({
           position: pos,
           map: this.map

@@ -9,7 +9,7 @@ import { LocationService } from '../../location.service';
 })
 export class LastKnownLocationComponent {
 
-    locations: Models.Location.LocationModel[];
+    locations: Models.Location[];
     isRequesting = false;
     resultMessage;
 
