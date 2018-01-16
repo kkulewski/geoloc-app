@@ -29,14 +29,15 @@ export class LocateComponent {
 
     private onLocateSuccess(position: Position) {
         this.resultMessage = 'success';
-        const userName = localStorage.getItem('user_name');
+        const username = localStorage.getItem('user_name');
         const userId = localStorage.getItem('user_id');
         this.location = {
+            username: username,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
             userId: userId
         };
-        if (userName) {
+        if (username) {
             this.sendLocation();
         }
     }
