@@ -13,7 +13,7 @@ export class MapComponent implements AfterViewInit {
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
-  private locations: Models.Location[];
+  public locations: Models.Location[];
 
   locate(location: Models.Location) {
     this.map.setCenter(new google.maps.LatLng(location.latitude, location.longitude));
