@@ -30,7 +30,9 @@ export class MapComponent implements AfterViewInit {
         var pos = { lat: location.latitude, lng: location.longitude };
         var marker = new google.maps.Marker({
           position: pos,
-          map: this.map
+          map: this.map,
+          title: location.username,
+          label: location.username.charAt(0)
         });
       }
     });
