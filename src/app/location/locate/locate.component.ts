@@ -3,8 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-locate',
-    templateUrl: './locate.component.html',
-    styleUrls: ['./locate.component.css']
+    templateUrl: './locate.component.html'
 })
 export class LocateComponent {
 
