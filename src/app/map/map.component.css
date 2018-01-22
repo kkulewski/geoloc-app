@@ -1,0 +1,12 @@
+#map {
+    width: 500px;
+    height: 500px;
+}
+
+.box {
+    padding: 10px;
+    border: solid black 1px;
+    background-color: #153674;
+    text-align: center;
+    color: #2dc266;
+}

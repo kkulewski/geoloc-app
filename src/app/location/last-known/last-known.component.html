@@ -9,17 +9,15 @@
         <thead>
           <tr>
             <th>User</th>
-            <th>Timestamp</th>
             <th>Latitude</th>
             <th>Longitude</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let location of locations"> 
-            <td>{{location.UserName}}</td>
-            <td>{{location.Timestamp}}</td>
-            <td>{{location.Latitude}}</td>
-            <td>{{location.Longitude}}</td>
+            <td>{{location.username}}</td>
+            <td>{{location.latitude}}</td>
+            <td>{{location.longitude}}</td>
           </tr>
         </tbody>
       </table>
