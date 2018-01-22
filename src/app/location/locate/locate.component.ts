@@ -8,7 +8,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class LocateComponent {
 
-    location: Models.Location.LocationModel;
+    location: Models.Location;
     isRequesting = false;
     resultMessage = 'not run';
 
@@ -29,14 +29,15 @@ export class LocateComponent {
 
     private onLocateSuccess(position: Position) {
         this.resultMessage = 'success';
-        const userName = localStorage.getItem('user_name');
+        const username = localStorage.getItem('user_name');
+        const userId = localStorage.getItem('user_id');
         this.location = {
+            username: username,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-            timestamp: Date.now()
+            userId: userId
         };
-        if (userName) {
-            this.location.userName = userName;
+        if (username) {
             this.sendLocation();
         }
     }

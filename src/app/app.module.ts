@@ -13,6 +13,8 @@ import { LocateComponent } from './location/locate/locate.component';
 import { LastKnownLocationComponent } from './location/last-known/last-known.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
+import { MapComponent } from './map/map.component';
+import { LocationService } from './location.service';
 
 
 const appRoutes: Routes = [
@@ -20,7 +22,8 @@ const appRoutes: Routes = [
   { path: 'locate', component: LocateComponent },
   { path: 'last', component: LastKnownLocationComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'map', component: MapComponent}
 ];
 
 
@@ -32,7 +35,8 @@ const appRoutes: Routes = [
     LocateComponent,
     LastKnownLocationComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ const appRoutes: Routes = [
     )
   ],
   providers: [
-    { provide: 'BASE_URL', useFactory: getBaseUrl }
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    LocationService
   ],
   bootstrap: [AppComponent]
 })
