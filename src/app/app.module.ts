@@ -57,6 +57,7 @@ export class AppModule { }
 
 export function getBaseUrl() {
   // return document.getElementsByTagName('base')[0].href;
-  const apiPort = '5000';
-  return location.protocol + '//' + location.hostname + ':' + apiPort + '/';
+  // const apiPort = '5000';
+  // return location.protocol + '//' + location.hostname + ':' + apiPort + '/';
+  return 'https://geoloc-ug.azurewebsites.net/';
 }
