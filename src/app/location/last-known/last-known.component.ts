@@ -4,8 +4,7 @@ import { LocationService } from '../../location.service';
 
 @Component({
     selector: 'app-last-known',
-    templateUrl: './last-known.component.html',
-    styleUrls: ['./last-known.component.css']
+    templateUrl: './last-known.component.html'
 })
 export class LastKnownLocationComponent {
 
