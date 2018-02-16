@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
     router.events.subscribe(event => this.isNavbarCollapsed = true);
   }
 
-  private isNavbarCollapsed = true;
+  isNavbarCollapsed = true;
 
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
