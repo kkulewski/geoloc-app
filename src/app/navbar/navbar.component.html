@@ -1,17 +1,10 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top geo-navbar">
   <a class="navbar-brand" [routerLink]="['/']">
-    <div *ngIf="username()">
-      <div style="color: white; text-shadow: 0 0 10px yellowgreen, 0 0 20px green">
+    <div [ngClass]="{ 'geo-logo-logged': isUserLogged }">
         Geoloc
-      </div>
-    </div>
-    <div *ngIf="!username()">
-      <div>
-        Geoloc
-      </div>
     </div>
   </a>
-  <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="navbarsExampleDefault"
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-controls="navbarsExampleDefault"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,7 +17,7 @@
           <a class="dropdown-item" [routerLink]="['/last']">Last-known</a>
         </div>
       </li>
-      <li class="nav-item dropdown" ngbDropdown>
+      <li class="nav-item dropdown" ngbDropdown *ngIf="!isUserLogged">
         <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Account</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
           <a class="dropdown-item" [routerLink]="['/register']">Register</a>
@@ -33,14 +26,11 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/map']">Map</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><span class="badge badge-success">{{username()}}</span></a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      </li>      
+      <li class="nav-item" *ngIf="isUserLogged">
+        <a class="nav-link" (click)="logoutUser()">Logout</a>
+      </li>      
+    </ul>    
+    <span class="badge badge-success ml-auto">{{username}}</span>    
   </div>
 </nav>

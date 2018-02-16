@@ -12,10 +12,24 @@ export class NavbarComponent implements OnInit {
     router.events.subscribe(event => this.isNavbarCollapsed = true);
   }
 
-  isNavbarCollapsed = true;
+  private isNavbarCollapsed = true;
 
-  username() {
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
+  get isUserLogged() {
     return localStorage.getItem('user_name');
+  }
+
+  get username(): string {
+    return localStorage.getItem('user_name');
+  }
+
+  logoutUser() {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('user_name');
   }
 
   ngOnInit() {
