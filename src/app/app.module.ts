@@ -4,6 +4,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 import { MapComponent } from './map/map.component';
 import { LocationService } from './location.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 const appRoutes: Routes = [
@@ -28,6 +31,9 @@ const appRoutes: Routes = [
 
 
 @NgModule({
+  entryComponents: [
+    DialogComponent
+  ],
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -36,7 +42,8 @@ const appRoutes: Routes = [
     LastKnownLocationComponent,
     RegisterComponent,
     LoginComponent,
-    MapComponent
+    MapComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    MatFormFieldModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -57,7 +70,7 @@ export class AppModule { }
 
 export function getBaseUrl() {
   // return document.getElementsByTagName('base')[0].href;
-  // const apiPort = '5000';
-  // return location.protocol + '//' + location.hostname + ':' + apiPort + '/';
-  return 'https://geoloc-ug.azurewebsites.net/';
+  const apiPort = '5000';
+  return 'http://localhost:5000/';
+  // return 'https://geoloc-ug.azurewebsites.net/';
 }

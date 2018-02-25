@@ -1,33 +1,32 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
     selector: 'app-locate',
-    templateUrl: './locate.component.html'
+    templateUrl: './locate.component.html',
+    styleUrls: ['./locate.component.css']
 })
 export class LocateComponent {
 
     location: Models.Location;
-    isRequesting = false;
-    resultMessage = 'not run';
+    isLoading = false;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+     public dialog: MatDialog) { }
 
-    locate() {
+    locate(): void {
         if (!navigator.geolocation) {
-            this.resultMessage = 'navigator API not available';
-            return;
+            this.openDialog('Your browser doesn\'t allow geolocation');
         }
-
-        this.resultMessage = 'reading location...';
         navigator.geolocation.getCurrentPosition(
             position => this.onLocateSuccess(position),
-            error => this.onLocateFailure
+            error => this.openDialog('Your browser doesn\'t allow geolocation')
         );
     }
 
-    private onLocateSuccess(position: Position) {
-        this.resultMessage = 'success';
+    private onLocateSuccess(position: Position): void {
         const username = localStorage.getItem('user_name');
         const userId = localStorage.getItem('user_id');
         this.location = {
@@ -38,24 +37,30 @@ export class LocateComponent {
         };
         if (username) {
             this.sendLocation();
+        } else {
+            this.openDialog('Your location was recognised');
         }
     }
 
-    private onLocateFailure() {
-        this.resultMessage = 'failure';
-    }
-
-    private sendLocation() {
-        this.isRequesting = true;
+    private sendLocation(): void {
+        this.isLoading = true;
         this.http.post(this.baseUrl + 'api/location/send', this.location)
-            .subscribe(
+        .subscribe(
             (response: string) => {
-                this.resultMessage += ` (${response})`;
-                this.isRequesting = false;
+                this.isLoading = false;
+                this.openDialog('Your location was added to database');
             },
             (error: HttpErrorResponse) => {
-                this.resultMessage += ` (${error.status} - ${error.statusText})`;
-                this.isRequesting = false;
+                this.isLoading = false;
+                this.openDialog(`Error while adding your location to database`);
             });
+    }
+
+    private openDialog(message: string): void {
+        let dialogRef = this.dialog.open(DialogComponent, {
+            width: '500px',
+            data: { dialogHeader: 'Your location status',
+            message: message}
+        });
     }
 }
