@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatDialogModule,
+   MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { LoginComponent } from './account/login/login.component';
 import { MapComponent } from './map/map.component';
 import { LocationService } from './location.service';
 import { DialogComponent } from './dialog/dialog.component';
+import { environment } from '../environments/environment';
 
 
 const appRoutes: Routes = [
@@ -58,19 +60,14 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
+    MatIconModule,
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: 'BASE_URL', useFactory: getBaseUrl },
+    { provide: 'BASE_URL', useValue: environment.apiEndpoint },
     LocationService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function getBaseUrl() {
-  // return document.getElementsByTagName('base')[0].href;
-  const apiPort = '5000';
-  return 'http://localhost:5000/';
-  // return 'https://geoloc-ug.azurewebsites.net/';
-}

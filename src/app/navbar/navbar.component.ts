@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_id');
     localStorage.removeItem('user_name');
+    this.router.navigateByUrl('/');
   }
 
   ngOnInit() {

@@ -1,8 +1,12 @@
-.geo-navbar {
-    cursor: pointer;
+.geo-nav {
+    color: whitesmoke;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: auto;
+    background-color:black;
 }
 
-.geo-logo-logged {
-    color: white;
-    text-shadow: 0 0 10px yellowgreen, 0 0 20px green
+.geo-submenu {
+    background-color: azure
 }
