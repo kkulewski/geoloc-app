@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatDialogModule,
+import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
    MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule } from '@angular/material';
 
 
@@ -18,7 +18,9 @@ import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 import { MapComponent } from './map/map.component';
 import { LocationService } from './location.service';
+import { RelationsService } from './relations.service';
 import { DialogComponent } from './dialog/dialog.component';
+import { RelationsComponent } from './relations/relations.component';
 import { environment } from '../environments/environment';
 
 
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
   { path: 'last', component: LastKnownLocationComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'map', component: MapComponent}
+  { path: 'map', component: MapComponent},
+  { path: 'relations', component: RelationsComponent}
 ];
 
 
@@ -45,7 +48,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     MapComponent,
-    DialogComponent
+    DialogComponent,
+    RelationsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,
+    MatListModule,
+    MatCardModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatMenuModule,
@@ -66,7 +72,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     { provide: 'BASE_URL', useValue: environment.apiEndpoint },
-    LocationService
+    LocationService,
+    RelationsService
   ],
   bootstrap: [AppComponent]
 })

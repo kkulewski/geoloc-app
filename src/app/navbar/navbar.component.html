@@ -1,16 +1,26 @@
 <div class="geo-nav">
-        <button mat-button [routerLink]="['/']">
-            <mat-icon>dashboard</mat-icon>
-            <span>Dashboard</span>
-        </button>
-        <button mat-button [matMenuTriggerFor]="accountSubmenu" *ngIf="!isUserLogged">
-            <mat-icon>account_box</mat-icon>
-            <span>Account</span>
-        </button>
-        <button mat-button [matMenuTriggerFor]="localizationSubmenu">
-            <mat-icon>place</mat-icon>
-            <span>Localization</span>
-        </button>
+
+    <button mat-button [routerLink]="['/']">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="accountSubmenu" *ngIf="!isUserLogged">
+        <mat-icon>account_box</mat-icon>
+        <span>Account</span>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="localizationSubmenu">
+        <mat-icon>place</mat-icon>
+        <span>Localization</span>
+    </button>
+
+    <button mat-button [routerLink]="['/relations']" *ngIf="isUserLogged">
+       <mat-icon>person_add</mat-icon>
+       <span>Relations</span>
+    </button>
+
+
     <span *ngIf="isUserLogged" class="float-right">
         <button mat-button >
             <mat-icon>account_circle</mat-icon>
@@ -20,6 +30,7 @@
             <mat-icon>power_settings_new</mat-icon>
         </button>
     </span>
+
     <mat-menu #accountSubmenu="matMenu" class="geo-submenu">
         <button mat-menu-item [routerLink]="['/login']">
             <mat-icon>lock_open</mat-icon>
@@ -41,4 +52,5 @@
             <span>Last known</span>
         </button>
     </mat-menu>
+
 </div>
