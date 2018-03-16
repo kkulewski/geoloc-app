@@ -9,13 +9,6 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
-    router.events.subscribe(event => this.isNavbarCollapsed = true);
-  }
-
-  isNavbarCollapsed = true;
-
-  toggleNavbar() {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 
   get isUserLogged() {

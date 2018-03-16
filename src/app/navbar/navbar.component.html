@@ -5,14 +5,14 @@
         <span>Dashboard</span>
     </button>
 
+    <button mat-button [routerLink]="['/locate']">
+        <mat-icon>place</mat-icon>
+        <span>Locate</span>
+    </button>
+
     <button mat-button [matMenuTriggerFor]="accountSubmenu" *ngIf="!isUserLogged">
         <mat-icon>account_box</mat-icon>
         <span>Account</span>
-    </button>
-
-    <button mat-button [matMenuTriggerFor]="localizationSubmenu">
-        <mat-icon>place</mat-icon>
-        <span>Localization</span>
     </button>
 
     <button mat-button [routerLink]="['/relations']" *ngIf="isUserLogged">
@@ -41,16 +41,4 @@
             <span>Register</span>
         </button>
     </mat-menu>
-
-    <mat-menu #localizationSubmenu="matMenu" class="geo-submenu">
-        <button mat-menu-item [routerLink]="['/locate']">
-            <mat-icon>lock_open</mat-icon>
-            <span>Locate</span>
-        </button>
-        <button mat-menu-item [routerLink]="['/last']">
-            <mat-icon>create</mat-icon>
-            <span>Last known</span>
-        </button>
-    </mat-menu>
-
 </div>

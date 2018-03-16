@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { LocateComponent } from './location/locate/locate.component';
-import { LastKnownLocationComponent } from './location/last-known/last-known.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 import { MapComponent } from './map/map.component';
@@ -27,7 +26,6 @@ import { environment } from '../environments/environment';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'locate', component: LocateComponent },
-  { path: 'last', component: LastKnownLocationComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent},
@@ -44,7 +42,6 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     LocateComponent,
-    LastKnownLocationComponent,
     RegisterComponent,
     LoginComponent,
     MapComponent,
