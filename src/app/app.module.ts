@@ -21,6 +21,7 @@ import { RelationsService } from './relations.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { RelationsComponent } from './relations/relations.component';
 import { environment } from '../environments/environment';
+import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     LoginComponent,
     MapComponent,
     DialogComponent,
-    RelationsComponent
+    RelationsComponent,
+    MeetingDialogComponent
   ],
   imports: [
     BrowserModule,
