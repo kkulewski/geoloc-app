@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
-   MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule } from '@angular/material';
+   MatInputModule, MatProgressSpinnerModule, MatMenuModule,
+   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    MeetingDialogComponent
   ],
   declarations: [
     AppComponent,
@@ -58,6 +60,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,

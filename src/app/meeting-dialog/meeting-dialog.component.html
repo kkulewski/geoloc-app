@@ -1,3 +1,24 @@
-<p>
-  meeting-dialog works!
-</p>
+<div class="dialog">
+  <h1>Meeting data</h1>
+
+  <div mat-dialog-content class="dialog-form">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Name" [(ngModel)]="name">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Time" [(ngModel)]="time">
+    </mat-form-field>
+    <div class="full-width">
+      <input [matDatepicker]="datepicker" [(ngModel)]="date">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </div>
+  </div>
+
+
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onClose()">
+      <i class="material-icons">done</i>
+    </button>
+  </div>
+</div>

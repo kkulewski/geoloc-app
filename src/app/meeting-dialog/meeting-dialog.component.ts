@@ -11,6 +11,9 @@ export class MeetingDialogComponent {
   constructor(public dialogRef: MatDialogRef<MeetingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Models.MeetingDialogModel) {
 
-     }
+  }
 
+  onClose(): void {
+    this.dialogRef.close();
+  }
 }

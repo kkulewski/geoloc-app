@@ -1,5 +1,8 @@
-import { Component, AfterViewInit, Inject, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { LocationService } from '../location.service';
+import { MatDialog } from '@angular/material';
+import { MeetingDialogComponent } from '../meeting-dialog/meeting-dialog.component';
+
 declare const google: any;
 
 @Component({
@@ -7,14 +10,15 @@ declare const google: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements AfterViewInit {
-  constructor(private locationService: LocationService) {
+export class MapComponent implements OnInit {
+  constructor(private locationService: LocationService, public dialog: MatDialog) {
   }
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
   public locations: Models.Location[];
   private markers: google.maps.Marker[] = [];
+  private clickListener: google.maps.MapsEventListener;
 
   locate(location: Models.Location) {
     this.map.setCenter(new google.maps.LatLng(location.latitude, location.longitude));
@@ -26,20 +30,8 @@ export class MapComponent implements AfterViewInit {
       zoom: 8,
       disableDefaultUI: true
     });
-    this.map.addListener('click', (event) => this.addMarker(event.latLng));
-    this.locationService.getLastLocations().subscribe(locations => {
-      this.locations = locations;
-      for (let location of locations) {
-        var pos = { lat: location.latitude, lng: location.longitude };
-        var marker = new google.maps.Marker({
-          position: pos,
-          map: this.map,
-          title: location.username,
-          label: location.username.charAt(0)
-        });
-        this.markers.push(marker);
-      }
-    });
+    this.clickListener = this.map.addListener('click', (event) => this.addMarker(event.latLng));
+
   }
 
   private addMarker(location) {
@@ -48,9 +40,15 @@ export class MapComponent implements AfterViewInit {
       map: this.map
     });
     this.markers.push(marker);
+    this.showMeetingModal();
   }
 
-  ngAfterViewInit() {
+  private showMeetingModal() {
+    this.dialog.open(MeetingDialogComponent, {
+    });
+  }
+
+  ngOnInit() {
     this.initMap();
   }
 }

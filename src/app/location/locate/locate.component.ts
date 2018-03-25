@@ -57,7 +57,7 @@ export class LocateComponent {
     }
 
     private openDialog(message: string): void {
-        let dialogRef = this.dialog.open(DialogComponent, {
+        this.dialog.open(DialogComponent, {
             width: '500px',
             data: { dialogHeader: 'Your location status',
             message: message}
