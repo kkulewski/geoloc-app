@@ -1,36 +1,44 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top geo-navbar">
-  <a class="navbar-brand" [routerLink]="['/']">
-    <div [ngClass]="{ 'geo-logo-logged': isUserLogged }">
-        Geoloc
-    </div>
-  </a>
-  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-controls="navbarsExampleDefault"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isNavbarCollapsed">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown" ngbDropdown>
-        <a class="nav-link dropdown-toggle" id="dropdown02" ngbDropdownToggle>Location</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown02" ngbDropdownMenu>
-          <a class="dropdown-item" [routerLink]="['/locate']">Locate</a>
-          <a class="dropdown-item" [routerLink]="['/last']">Last-known</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown" ngbDropdown *ngIf="!isUserLogged">
-        <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Account</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
-          <a class="dropdown-item" [routerLink]="['/register']">Register</a>
-          <a class="dropdown-item" [routerLink]="['/login']">Login</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/map']">Map</a>
-      </li>      
-      <li class="nav-item" *ngIf="isUserLogged">
-        <a class="nav-link" (click)="logoutUser()">Logout</a>
-      </li>      
-    </ul>    
-    <span class="badge badge-success ml-auto">{{username}}</span>    
-  </div>
-</nav>
+<div class="geo-nav">
+
+    <button mat-button [routerLink]="['/']">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+    </button>
+
+    <button mat-button [routerLink]="['/locate']">
+        <mat-icon>place</mat-icon>
+        <span>Locate</span>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="accountSubmenu" *ngIf="!isUserLogged">
+        <mat-icon>account_box</mat-icon>
+        <span>Account</span>
+    </button>
+
+    <button mat-button [routerLink]="['/relations']" *ngIf="isUserLogged">
+       <mat-icon>person_add</mat-icon>
+       <span>Relations</span>
+    </button>
+
+
+    <span *ngIf="isUserLogged" class="float-right">
+        <button mat-button >
+            <mat-icon>account_circle</mat-icon>
+            <span>{{username}}</span>
+        </button>
+        <button mat-button (click)="logoutUser()">
+            <mat-icon>power_settings_new</mat-icon>
+        </button>
+    </span>
+
+    <mat-menu #accountSubmenu="matMenu" class="geo-submenu">
+        <button mat-menu-item [routerLink]="['/login']">
+            <mat-icon>lock_open</mat-icon>
+            <span>Login</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/register']">
+            <mat-icon>create</mat-icon>
+            <span>Register</span>
+        </button>
+    </mat-menu>
+</div>

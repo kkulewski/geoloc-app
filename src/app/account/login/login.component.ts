@@ -3,6 +3,7 @@ import { Response } from '@angular/http';
 import { ILoginModel } from '../models/login.model';
 import { AccountService } from '../account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -29,21 +30,22 @@ export class LoginComponent {
         return localStorage.getItem('user_name');
     }
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+    private router: Router) {
         this.accountService = new AccountService(this.http, this.baseUrl);
     }
 
     loginUser({ value, valid }: { value: ILoginModel, valid: boolean }) {
-        this.isRequesting = true;
         if (valid) {
             this.accountService.login(value.email, value.password)
                 .subscribe(
                 (response: ILoginSuccessful) => {
                     localStorage.setItem('auth_token', response.auth_token);
                     localStorage.setItem('user_id', response.id);
-
                     this.resultMessage = `ID = ${response.id}`;
                     this.isRequesting = false;
+                    this.getUserName();
+                    this.router.navigateByUrl('/');
                 },
                 (error: HttpErrorResponse) => {
                     this.resultMessage = `${error.status} - ${error.statusText}`;

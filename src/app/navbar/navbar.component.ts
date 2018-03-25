@@ -9,13 +9,6 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
-    router.events.subscribe(event => this.isNavbarCollapsed = true);
-  }
-
-  isNavbarCollapsed = true;
-
-  toggleNavbar() {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 
   get isUserLogged() {
@@ -30,6 +23,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_id');
     localStorage.removeItem('user_name');
+    this.router.navigateByUrl('/');
   }
 
   ngOnInit() {

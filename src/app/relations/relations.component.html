@@ -1,0 +1,40 @@
+<form>
+  <input type="text" class="form-control" name="userName" placeholder="Insert user name..." [(ngModel)]="requestUserName">
+  <button mat-raised-button (click)="send(requestUserName)">Send</button>
+</form>
+
+<br>
+
+<div>
+  <mat-card>
+    <mat-card-title>Friends</mat-card-title>
+    <mat-list *ngFor="let relation of friends">
+      <mat-card>{{relation.invitedUserName}} - {{relation.invitingUserName}}</mat-card>
+    </mat-list>
+  </mat-card>
+</div>
+
+<br>
+
+<div>
+  <mat-card>
+      <mat-card-title>Sent</mat-card-title>
+    <mat-list *ngFor="let relation of requestsSent">
+      <mat-card>{{relation.invitedUserName}}</mat-card>
+    </mat-list>
+  </mat-card>
+</div>
+
+<br>
+
+<div>
+  <mat-card>
+      <mat-card-title>Received</mat-card-title>
+    <mat-list *ngFor="let relation of requestsReceived">
+      <mat-card>
+          {{relation.invitingUserName}}
+          <button mat-raised-button (click)="accept(relation.id)">Accept</button>
+      </mat-card>
+    </mat-list>
+  </mat-card>
+</div>
