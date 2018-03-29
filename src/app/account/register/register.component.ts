@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { IRegisterModel } from '../models/register.model';
-import { AccountService } from '../account.service';
+import { AccountService } from '../../services/account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -13,8 +13,8 @@ export class RegisterComponent {
     resultMessage = '';
     accountService: AccountService;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router) {
-        this.accountService = new AccountService(this.http, this.baseUrl);
+    constructor(private http: HttpClient, private router: Router) {
+        this.accountService = new AccountService(this.http);
     }
 
     registerUser({ value, valid }: { value: IRegisterModel, valid: boolean }) {

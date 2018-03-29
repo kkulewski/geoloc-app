@@ -13,7 +13,7 @@ export class LocateComponent {
     location: Models.Location;
     isLoading = false;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
+    constructor(private http: HttpClient,
      public dialog: MatDialog) { }
 
     locate(): void {
@@ -44,7 +44,7 @@ export class LocateComponent {
 
     private sendLocation(): void {
         this.isLoading = true;
-        this.http.post(this.baseUrl + 'api/location/send', this.location)
+        this.http.post('api/location/send', this.location)
         .subscribe(
             (response: string) => {
                 this.isLoading = false;

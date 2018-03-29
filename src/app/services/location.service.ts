@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LocationService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient) { }
 
   public getLastLocations(): Observable<Models.Location[]> {
-    return this.http.get<Models.Location[]>(this.baseUrl + 'api/location/get/last/');
+    return this.http.get<Models.Location[]>('api/location/get/last/');
   }
 }

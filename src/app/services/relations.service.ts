@@ -5,22 +5,22 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RelationsService {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient) { }
 
   public getFriends(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>(this.baseUrl + 'api/userrelation/' + userId);
+    return this.http.get<Models.Relation[]>('api/userrelation/' + userId);
   }
 
   public getRequestsSent(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>(this.baseUrl + 'api/userrelation/sent/' + userId);
+    return this.http.get<Models.Relation[]>('api/userrelation/sent/' + userId);
   }
 
   public getRequestsReceived(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>(this.baseUrl + 'api/userrelation/received/' + userId);
+    return this.http.get<Models.Relation[]>('api/userrelation/received/' + userId);
   }
 
   public sendRequest(invitingUserName: string, invitedUserName: string) {
-    const url = this.baseUrl + 'api/userrelation/send';
+    const url = 'api/userrelation/send';
 
     var relationRequest = new RelationRequest();
     relationRequest.invitingUserName = invitingUserName;
@@ -32,7 +32,7 @@ export class RelationsService {
   }
 
   public acceptRequest(relationId: string) {
-    const url = this.baseUrl + 'api/userrelation/accept';
+    const url = 'api/userrelation/accept';
     const body = JSON.stringify(relationId);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(url, body, {headers});

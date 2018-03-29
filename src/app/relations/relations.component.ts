@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { RelationsService } from '../services/relations.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class RelationsComponent {
     isRequesting = false;
     resultMessage;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private relationsService: RelationsService) {
+    constructor(private relationsService: RelationsService) {
         this.getRelations();
     }
 

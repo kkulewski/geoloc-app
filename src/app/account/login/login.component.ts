@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Response } from '@angular/http';
 import { ILoginModel } from '../models/login.model';
-import { AccountService } from '../account.service';
+import { AccountService } from '../../services/account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -31,9 +31,8 @@ export class LoginComponent {
         return localStorage.getItem('user_name');
     }
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-        private router: Router) {
-        this.accountService = new AccountService(this.http, this.baseUrl);
+    constructor(private http: HttpClient, private router: Router) {
+        this.accountService = new AccountService(this.http);
     }
 
     loginUser({ value, valid }: { value: ILoginModel, valid: boolean }) {
