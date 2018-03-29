@@ -60,7 +60,7 @@ export class LocateComponent {
         this.dialog.open(DialogComponent, {
             width: '500px',
             data: { dialogHeader: 'Your location status',
-            message: message}
+            message: message }
         });
     }
 }

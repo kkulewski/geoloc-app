@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { RelationsService } from '../relations.service';
+import { RelationsService } from '../services/relations.service';
 
 @Component({
     selector: 'app-relations',

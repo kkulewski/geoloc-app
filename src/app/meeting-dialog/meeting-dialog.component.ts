@@ -13,6 +13,10 @@ export class MeetingDialogComponent {
 
   }
 
+  name: string;
+  time: string;
+  date: string;
+
   onClose(): void {
     this.dialogRef.close();
   }

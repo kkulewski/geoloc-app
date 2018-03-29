@@ -12,13 +12,12 @@ import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, Ma
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
 import { LocateComponent } from './location/locate/locate.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LoginComponent } from './account/login/login.component';
 import { MapComponent } from './map/map.component';
-import { LocationService } from './location.service';
-import { RelationsService } from './relations.service';
+import { LocationService } from './services/location.service';
+import { RelationsService } from './services/relations.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { RelationsComponent } from './relations/relations.component';
 import { environment } from '../environments/environment';
@@ -26,7 +25,7 @@ import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.componen
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: MapComponent },
   { path: 'locate', component: LocateComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
@@ -38,12 +37,11 @@ const appRoutes: Routes = [
 @NgModule({
   entryComponents: [
     DialogComponent,
-    MeetingDialogComponent
+    MeetingDialogComponent,
   ],
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     LocateComponent,
     RegisterComponent,
     LoginComponent,

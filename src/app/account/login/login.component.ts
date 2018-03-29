@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
     isRequesting = false;
@@ -31,7 +32,7 @@ export class LoginComponent {
     }
 
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,
-    private router: Router) {
+        private router: Router) {
         this.accountService = new AccountService(this.http, this.baseUrl);
     }
 
@@ -39,18 +40,18 @@ export class LoginComponent {
         if (valid) {
             this.accountService.login(value.email, value.password)
                 .subscribe(
-                (response: ILoginSuccessful) => {
-                    localStorage.setItem('auth_token', response.auth_token);
-                    localStorage.setItem('user_id', response.id);
-                    this.resultMessage = `ID = ${response.id}`;
-                    this.isRequesting = false;
-                    this.getUserName();
-                    this.router.navigateByUrl('/');
-                },
-                (error: HttpErrorResponse) => {
-                    this.resultMessage = `${error.status} - ${error.statusText}`;
-                    this.isRequesting = false;
-                });
+                    (response: ILoginSuccessful) => {
+                        localStorage.setItem('auth_token', response.auth_token);
+                        localStorage.setItem('user_id', response.id);
+                        this.resultMessage = `ID = ${response.id}`;
+                        this.isRequesting = false;
+                        this.getUserName();
+                        this.router.navigateByUrl('/');
+                    },
+                    (error: HttpErrorResponse) => {
+                        this.resultMessage = `${error.status} - ${error.statusText}`;
+                        this.isRequesting = false;
+                    });
         }
     }
 
@@ -61,14 +62,14 @@ export class LoginComponent {
             if (id != null) {
                 this.accountService.getUserName(id)
                     .subscribe(
-                    result => {
-                        localStorage.setItem('user_name', result as string);
-                        this.isRequesting = false;
-                    },
-                    error => {
-                        console.error(error);
-                        this.isRequesting = false;
-                    });
+                        result => {
+                            localStorage.setItem('user_name', result as string);
+                            this.isRequesting = false;
+                        },
+                        error => {
+                            console.error(error);
+                            this.isRequesting = false;
+                        });
             }
         }
     }

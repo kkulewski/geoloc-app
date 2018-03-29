@@ -1,7 +1,10 @@
-import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
-import { LocationService } from '../location.service';
+import { Component, Inject, ElementRef, ViewChild, OnInit, NgZone } from '@angular/core';
+import { LocationService } from '../services/location.service';
 import { MatDialog } from '@angular/material';
 import { MeetingDialogComponent } from '../meeting-dialog/meeting-dialog.component';
+import { Router } from '@angular/router';
+import GoogleMapsLoader = require('google-maps');
+import { environment } from '../../environments/environment';
 
 declare const google: any;
 
@@ -11,27 +14,28 @@ declare const google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(private locationService: LocationService, public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router, private zone: NgZone) {
+    GoogleMapsLoader.KEY = environment.googleMapsApiKey;
   }
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
-  public locations: Models.Location[];
   private markers: google.maps.Marker[] = [];
   private clickListener: google.maps.MapsEventListener;
 
-  locate(location: Models.Location) {
-    this.map.setCenter(new google.maps.LatLng(location.latitude, location.longitude));
-  }
-
   initMap() {
-    this.map = new google.maps.Map(this.mapDiv.nativeElement, {
-      center: { lat: 53.921, lng: 19.037 },
-      zoom: 8,
-      disableDefaultUI: true
+    GoogleMapsLoader.load(g => {
+      this.map = new google.maps.Map(this.mapDiv.nativeElement, {
+        center: { lat: 53.921, lng: 19.037 },
+        zoom: 8,
+        disableDefaultUI: true
+      });
+      this.clickListener = this.map.addListener('click', (event) => {
+        this.zone.run(() => {
+          this.addMarker(event.latLng);
+        });
+      });
     });
-    this.clickListener = this.map.addListener('click', (event) => this.addMarker(event.latLng));
-
   }
 
   private addMarker(location) {
@@ -40,11 +44,12 @@ export class MapComponent implements OnInit {
       map: this.map
     });
     this.markers.push(marker);
-    this.showMeetingModal();
+    this.showMeetingModal(location.lat(), location.lng());
   }
 
-  private showMeetingModal() {
+  private showMeetingModal(longitude: number, latitude: number) {
     this.dialog.open(MeetingDialogComponent, {
+      data: {longitude, latitude}
     });
   }
 

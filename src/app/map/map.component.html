@@ -1,15 +1,1 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm justify-content-md-center" #mapDiv id="map"></div>
-    </div>
-    <div class="row">
-        <div *ngFor="let location of locations">
-            <div class="col geo-box" (click)="locate(location)">
-                {{location.username}} <br />
-                {{location.latitude}} <br />
-                {{location.longitude}}
-                <br />
-            </div>
-        </div>
-    </div>
-</div>
+<div #mapDiv id="map"></div>

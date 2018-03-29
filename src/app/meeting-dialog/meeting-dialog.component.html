@@ -3,10 +3,10 @@
 
   <div mat-dialog-content class="dialog-form">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Name" [(ngModel)]="name">
+      <input matInput placeholder="Name" [(ngModel)]="name" type="text">
     </mat-form-field>
     <mat-form-field class="full-width">
-      <input matInput placeholder="Time" [(ngModel)]="time">
+      <input matInput placeholder="Time" [(ngModel)]="time" type="time">
     </mat-form-field>
     <div class="full-width">
       <input [matDatepicker]="datepicker" [(ngModel)]="date">
@@ -14,7 +14,6 @@
       <mat-datepicker #datepicker></mat-datepicker>
     </div>
   </div>
-
 
   <div mat-dialog-actions class="dialog-actions">
     <button mat-button (click)="onClose()">
