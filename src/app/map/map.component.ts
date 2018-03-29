@@ -39,17 +39,12 @@ export class MapComponent implements OnInit {
   }
 
   private addMarker(location) {
-    let marker = new google.maps.Marker({
-      position: location,
-      map: this.map
-    });
-    this.markers.push(marker);
     this.showMeetingModal(location.lat(), location.lng());
   }
 
   private showMeetingModal(longitude: number, latitude: number) {
     this.dialog.open(MeetingDialogComponent, {
-      data: {longitude, latitude}
+      data: { longitude: longitude, latitude: latitude, userId: localStorage.getItem('user_id') }
     });
   }
 

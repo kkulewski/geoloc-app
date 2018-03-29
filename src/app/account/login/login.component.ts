@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     isRequesting = false;
     resultMessage = '';
-    accountService: AccountService;
+
+    constructor(private router: Router, private accountService: AccountService) {
+    }
 
     authToken() {
         return localStorage.getItem('auth_token');
@@ -29,10 +31,6 @@ export class LoginComponent {
             this.getUserName();
         }
         return localStorage.getItem('user_name');
-    }
-
-    constructor(private http: HttpClient, private router: Router) {
-        this.accountService = new AccountService(this.http);
     }
 
     loginUser({ value, valid }: { value: ILoginModel, valid: boolean }) {
