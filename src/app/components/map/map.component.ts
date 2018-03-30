@@ -1,10 +1,10 @@
 import { Component, Inject, ElementRef, ViewChild, OnInit, NgZone } from '@angular/core';
-import { LocationService } from '../services/location.service';
+import { LocationService } from '../../services/location.service';
 import { MatDialog } from '@angular/material';
-import { MeetingDialogComponent } from '../meeting-dialog/meeting-dialog.component';
+import { MeetingDialogComponent } from '../modals/meeting-dialog/meeting-dialog.component';
 import { Router } from '@angular/router';
 import GoogleMapsLoader = require('google-maps');
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 declare const google: any;
 

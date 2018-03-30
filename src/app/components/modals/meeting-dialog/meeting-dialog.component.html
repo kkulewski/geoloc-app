@@ -13,6 +13,9 @@
       <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
       <mat-datepicker #datepicker disabled="false"></mat-datepicker>
     </div>
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Description" [(ngModel)]="description"></textarea>
+    </mat-form-field>
   </div>
 
   <div mat-dialog-actions class="dialog-actions justify-content-center">

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogComponent } from '../../modals/dialog/dialog.component';
 
 @Component({
     selector: 'app-locate',

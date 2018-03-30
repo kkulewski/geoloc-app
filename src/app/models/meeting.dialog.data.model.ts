@@ -1,5 +1,5 @@
 module Models {
-    export interface MeetingDialogModel {
+    export interface MeetingDialogDataModel {
         longitude: number;
         latitude: number;
         userId: string;

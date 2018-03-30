@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { IRegisterModel } from '../models/register.model';
-import { AccountService } from '../../services/account.service';
+import { IRegisterModel } from '../../../models/register.model';
+import { AccountService } from '../../../services/account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 

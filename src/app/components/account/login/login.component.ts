@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Response } from '@angular/http';
-import { ILoginModel } from '../models/login.model';
-import { AccountService } from '../../services/account.service';
+import { ILoginModel } from '../../../models/login.model';
+import { AccountService } from '../../../services/account.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 

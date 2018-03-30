@@ -12,4 +12,8 @@ export class MeetingService {
     return this.http.post('api/meeting/create', meeting);
   }
 
+  getMeetings(): Observable<Models.Meeting> {
+    return this.http.get<Models.Meeting>('api/meeting/all');
+  }
+
 }

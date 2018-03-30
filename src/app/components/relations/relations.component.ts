@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { RelationsService } from '../services/relations.service';
+import { RelationsService } from '../../services/relations.service';
 
 @Component({
     selector: 'app-relations',

@@ -1,10 +1,12 @@
 module Models {
     export interface Meeting {
-        userId: string;
         longitude: number;
         latitude: number;
         name: string;
+        description: string;
         time: string;
         date: Date;
+        host: Models.User;
+        participants: Models.User[];
     }
 }
