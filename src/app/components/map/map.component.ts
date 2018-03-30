@@ -2,7 +2,6 @@ import { Component, Inject, ElementRef, ViewChild, OnInit, NgZone } from '@angul
 import { LocationService } from '../../services/location.service';
 import { MatDialog } from '@angular/material';
 import { MeetingDialogComponent } from '../modals/meeting-dialog/meeting-dialog.component';
-import { Router } from '@angular/router';
 import GoogleMapsLoader = require('google-maps');
 import { environment } from '../../../environments/environment';
 
@@ -14,7 +13,7 @@ declare const google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(public dialog: MatDialog, private router: Router, private zone: NgZone) {
+  constructor(public dialog: MatDialog, private zone: NgZone) {
     GoogleMapsLoader.KEY = environment.googleMapsApiKey;
   }
 
@@ -23,7 +22,7 @@ export class MapComponent implements OnInit {
   private markers: google.maps.Marker[] = [];
   private clickListener: google.maps.MapsEventListener;
 
-  initMap() {
+  private initMap() {
     GoogleMapsLoader.load(g => {
       this.map = new google.maps.Map(this.mapDiv.nativeElement, {
         center: { lat: 53.921, lng: 19.037 },
@@ -42,7 +41,7 @@ export class MapComponent implements OnInit {
     this.showMeetingModal(location.lat(), location.lng());
   }
 
-  private showMeetingModal(longitude: number, latitude: number) {
+  private showMeetingModal(latitude: number, longitude: number) {
     this.dialog.open(MeetingDialogComponent, {
       data: { longitude: longitude, latitude: latitude, userId: localStorage.getItem('user_id') }
     });

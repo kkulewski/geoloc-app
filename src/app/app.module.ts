@@ -25,6 +25,7 @@ import { environment } from '../environments/environment';
 
 import { HttpRouteInterceptor } from './http-interceptors/http-route-interceptor';
 import { HttpModule } from '@angular/http';
+import { MeetingsMapComponent } from './components/meetings-map/meetings-map.component';
 
 
 const appRoutes: Routes = [
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent},
-  { path: 'relations', component: RelationsComponent}
+  { path: 'relations', component: RelationsComponent},
+  { path: 'meetings', component: MeetingsMapComponent}
 ];
 
 
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     MapComponent,
     DialogComponent,
     RelationsComponent,
-    MeetingDialogComponent
+    MeetingDialogComponent,
+    MeetingsMapComponent
   ],
   imports: [
     BrowserModule,

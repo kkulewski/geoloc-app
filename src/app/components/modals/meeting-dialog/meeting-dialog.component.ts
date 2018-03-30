@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { MeetingService } from '../../../services/meeting.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meeting-dialog',
@@ -12,7 +13,8 @@ export class MeetingDialogComponent {
 
   constructor(private dialogRef: MatDialogRef<MeetingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Models.MeetingDialogDataModel,
-    private meetingService: MeetingService) {
+    private meetingService: MeetingService,
+    private router: Router) {
   }
 
   name: string;
@@ -36,7 +38,10 @@ export class MeetingDialogComponent {
       },
       participants: []
     };
-    this.meetingService.createMeeting(meeting).subscribe(() => this.dialogRef.close());
+    this.meetingService.createMeeting(meeting).subscribe(() => {
+      this.dialogRef.close();
+      this.router.navigate(['meetings']);
+    });
   }
 
   onClose(): void {

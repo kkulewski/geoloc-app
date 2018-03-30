@@ -19,7 +19,11 @@
        <mat-icon>person_add</mat-icon>
        <span>Relations</span>
     </button>
-
+    
+    <button mat-button [routerLink]="['/meetings']" *ngIf="isUserLogged">
+        <mat-icon>person_add</mat-icon>
+        <span>Meetings</span>
+     </button>
 
     <span *ngIf="isUserLogged" class="float-right">
         <button mat-button >
