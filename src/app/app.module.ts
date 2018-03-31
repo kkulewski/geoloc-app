@@ -8,7 +8,7 @@ import { ServicesModule } from './services/services.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
    MatInputModule, MatProgressSpinnerModule, MatMenuModule,
-   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatExpansionModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -18,14 +18,15 @@ import { RegisterComponent } from './components/account/register/register.compon
 import { LoginComponent } from './components/account/login/login.component';
 import { MapComponent } from './components/map/map.component';
 import { RelationsComponent } from './components/relations/relations.component';
-import { DialogComponent } from './components/modals/dialog/dialog.component';
-import { MeetingDialogComponent } from './components/modals/meeting-dialog/meeting-dialog.component';
 
 import { environment } from '../environments/environment';
 
 import { HttpRouteInterceptor } from './http-interceptors/http-route-interceptor';
 import { HttpModule } from '@angular/http';
 import { MeetingsMapComponent } from './components/meetings-map/meetings-map.component';
+import { InfoComponent } from './components/modals/info/info.component';
+import { MeetingCreateComponent } from './components/modals/meeting-create/meeting-create.component';
+import { MeetingInfoComponent } from './components/modals/meeting-info/meeting-info.component';
 
 
 const appRoutes: Routes = [
@@ -41,8 +42,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   entryComponents: [
-    DialogComponent,
-    MeetingDialogComponent,
+    InfoComponent,
+    MeetingCreateComponent,
+    MeetingInfoComponent
   ],
   declarations: [
     AppComponent,
@@ -51,10 +53,11 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     MapComponent,
-    DialogComponent,
+    InfoComponent,
     RelationsComponent,
-    MeetingDialogComponent,
-    MeetingsMapComponent
+    MeetingCreateComponent,
+    MeetingsMapComponent,
+    MeetingInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatMenuModule,
     MatIconModule,
+    MatExpansionModule,
     BrowserAnimationsModule
   ],
   providers: [

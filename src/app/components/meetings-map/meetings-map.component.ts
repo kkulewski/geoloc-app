@@ -3,6 +3,7 @@ import GoogleMapsLoader = require('google-maps');
 import { MatDialog } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { MeetingService } from '../../services/meeting.service';
+import { MeetingInfoComponent } from '../modals/meeting-info/meeting-info.component';
 
 declare const google: any;
 
@@ -33,10 +34,22 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
 
   private createMarkersFromMeetings() {
     this.meetings.forEach((meeting) => {
-      this.markers.push(new google.maps.Marker({
+      let marker = new google.maps.Marker({
         position: new google.maps.LatLng(meeting.latitude, meeting.longitude),
-        map: this.map
-      }));
+        map: this.map,
+        meetingId: meeting.id
+      });
+      this.markers.push(marker);
+      google.maps.event.addListener(marker, 'click', () => {
+        this.zone.run(() => this.showMeetingInfoModal(marker.meetingId));
+      });
+    });
+  }
+
+  private showMeetingInfoModal(meetingId: string) {
+    let meeting = this.meetings.find(m => m.id === meetingId);
+    this.dialog.open(MeetingInfoComponent, {
+      data: { meeting }
     });
   }
 

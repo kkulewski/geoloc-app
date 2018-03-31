@@ -5,14 +5,14 @@ import { MeetingService } from '../../../services/meeting.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-meeting-dialog',
-  templateUrl: './meeting-dialog.component.html',
-  styleUrls: ['./meeting-dialog.component.css']
+  selector: 'app-meeting-create',
+  templateUrl: './meeting-create.component.html',
+  styleUrls: ['./meeting-create.component.css']
 })
-export class MeetingDialogComponent {
+export class MeetingCreateComponent {
 
-  constructor(private dialogRef: MatDialogRef<MeetingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: Models.MeetingDialogDataModel,
+  constructor(private dialogRef: MatDialogRef<MeetingCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: Models.MeetingCreateData,
     private meetingService: MeetingService,
     private router: Router) {
   }
@@ -24,18 +24,14 @@ export class MeetingDialogComponent {
 
   onApprove(): void {
     let meeting: Models.Meeting = {
+      id: null,
       longitude: this.data.longitude,
       latitude: this.data.latitude,
       name: this.name,
       description: this.description,
       date: this.date,
       time: this.time,
-      host: {
-        id: this.data.userId,
-        email: null,
-        firstName: null,
-        lastName: null
-      },
+      hostId: this.data.userId,
       participants: []
     };
     this.meetingService.createMeeting(meeting).subscribe(() => {

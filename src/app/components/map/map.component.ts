@@ -1,7 +1,7 @@
 import { Component, Inject, ElementRef, ViewChild, OnInit, NgZone } from '@angular/core';
 import { LocationService } from '../../services/location.service';
 import { MatDialog } from '@angular/material';
-import { MeetingDialogComponent } from '../modals/meeting-dialog/meeting-dialog.component';
+import { MeetingCreateComponent } from '../modals/meeting-create/meeting-create.component';
 import GoogleMapsLoader = require('google-maps');
 import { environment } from '../../../environments/environment';
 
@@ -42,7 +42,7 @@ export class MapComponent implements OnInit {
   }
 
   private showMeetingModal(latitude: number, longitude: number) {
-    this.dialog.open(MeetingDialogComponent, {
+    this.dialog.open(MeetingCreateComponent, {
       data: { longitude: longitude, latitude: latitude, userId: localStorage.getItem('user_id') }
     });
   }

@@ -1,5 +1,5 @@
 module Models {
-    export interface DialogDataModel {
+    export interface InfoData {
         dialogHeader: string;
         message: string;
     }

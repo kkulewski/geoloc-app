@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DialogComponent } from '../../modals/dialog/dialog.component';
+import { InfoComponent } from '../../modals/info/info.component';
 
 @Component({
   selector: 'app-locate',
@@ -57,7 +57,7 @@ export class LocateComponent {
   }
 
   private openDialog(message: string): void {
-    this.dialog.open(DialogComponent, {
+    this.dialog.open(InfoComponent, {
       width: '500px',
       data: {
         dialogHeader: 'Your location status',

@@ -1,0 +1,45 @@
+<div class="dialog">
+  <h1 mat-dialog-title class="text-center">Meeting details</h1>
+  <div mat-dialog-content class="dialog-form">
+    <mat-list>
+      <h5 md-subheader>Name</h5>
+      <mat-list-item>{{data.meeting.name}}</mat-list-item>
+      <h5 md-subheader>Description</h5>
+      <mat-list-item>{{data.meeting.description}}</mat-list-item>
+      <h5 md-subheader>Host</h5>
+      <mat-list-item>{{hostUsername}} <span *ngIf="isHost"> (You)</span></mat-list-item>
+      <h5 md-subheader>Date</h5>
+      <mat-list-item>{{date}}</mat-list-item>
+      <h5 md-subheader>Time</h5>
+      <mat-list-item>{{time}}</mat-list-item>
+      <mat-list-item *ngIf="!participantsPresent" class="strong">No participants in meeting yet!</mat-list-item>
+      <mat-accordion *ngIf="participantsPresent">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Participants
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item *ngFor="let participant of data.meeting.participants">
+            <p>{{participant.email}}</p>
+          </mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-list>
+  </div>
+
+  <div *ngIf="!isAlreadyInMeeting" mat-dialog-actions class="dialog-actions justify-content-center">
+    <button mat-raised-button (click)="onApprove()">
+      Join
+    </button>
+    <button mat-raised-button (click)="onClose()">
+      Dismiss
+    </button>
+  </div>
+  <div *ngIf="isAlreadyInMeeting" mat-dialog-actions class="dialog-actions justify-content-center">
+    <button mat-raised-button (click)="onClose()">
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+
+</div>
