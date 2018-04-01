@@ -13,7 +13,7 @@ export class MeetingInfoComponent {
   public panelOpened = false;
 
   constructor(private dialogRef: MatDialogRef<MeetingInfoComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: Models.MeetingInfoData,
+    @Inject(MAT_DIALOG_DATA) public data: Models.MeetingInfoData,
     private meetingService: MeetingService,
     private router: Router) {
   }
