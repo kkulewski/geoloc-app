@@ -1,61 +1,76 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ServicesModule } from './services/services.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
-   MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule } from '@angular/material';
+   MatInputModule, MatProgressSpinnerModule, MatMenuModule,
+   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatExpansionModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { LocateComponent } from './location/locate/locate.component';
-import { RegisterComponent } from './account/register/register.component';
-import { LoginComponent } from './account/login/login.component';
-import { MapComponent } from './map/map.component';
-import { LocationService } from './location.service';
-import { RelationsService } from './relations.service';
-import { DialogComponent } from './dialog/dialog.component';
-import { RelationsComponent } from './relations/relations.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LocateComponent } from './components/location/locate/locate.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { LoginComponent } from './components/account/login/login.component';
+import { MapComponent } from './components/map/map.component';
+import { RelationsComponent } from './components/relations/relations.component';
+
 import { environment } from '../environments/environment';
+
+import { HttpRouteInterceptor } from './http-interceptors/http-route-interceptor';
+import { HttpModule } from '@angular/http';
+import { MeetingsMapComponent } from './components/meetings-map/meetings-map.component';
+import { InfoComponent } from './components/modals/info/info.component';
+import { MeetingCreateComponent } from './components/modals/meeting-create/meeting-create.component';
+import { MeetingInfoComponent } from './components/modals/meeting-info/meeting-info.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: MapComponent },
   { path: 'locate', component: LocateComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent},
-  { path: 'relations', component: RelationsComponent}
+  { path: 'relations', component: RelationsComponent},
+  { path: 'meetings', component: MeetingsMapComponent}
 ];
 
 
 @NgModule({
   entryComponents: [
-    DialogComponent
+    InfoComponent,
+    MeetingCreateComponent,
+    MeetingInfoComponent
   ],
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     LocateComponent,
     RegisterComponent,
     LoginComponent,
     MapComponent,
-    DialogComponent,
-    RelationsComponent
+    InfoComponent,
+    RelationsComponent,
+    MeetingCreateComponent,
+    MeetingsMapComponent,
+    MeetingInfoComponent
   ],
   imports: [
     BrowserModule,
+    ServicesModule,
     NgbModule.forRoot(),
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes
     ),
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,
@@ -65,12 +80,11 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatMenuModule,
     MatIconModule,
+    MatExpansionModule,
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: 'BASE_URL', useValue: environment.apiEndpoint },
-    LocationService,
-    RelationsService
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRouteInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

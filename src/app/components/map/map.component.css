@@ -1,0 +1,16 @@
+#map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index:0;
+}
+
+.geo-box {
+    padding: 10px;
+    border: solid black 1px;
+    background-color: #153674;
+    text-align: center;
+    color: #2dc266;
+}

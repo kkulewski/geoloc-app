@@ -1,0 +1,18 @@
+<form #f="ngForm" (ngSubmit)="loginUser(f)">
+    <div class="form-row justify-content-center">
+        <div class="geo-row">
+            <label for="email">Email</label>
+            <input id="email" type="text" required name="email" class="form-control" placeholder="Email" ngModel>
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <div class="geo-row">
+            <label for="password">Password</label>
+            <input id="password" type="password" required name="password" class="form-control" placeholder="Password" ngModel>
+        </div>
+    </div>
+    <div class="form-group justify-content-center">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+
+</form>
