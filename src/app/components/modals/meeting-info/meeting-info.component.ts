@@ -47,7 +47,7 @@ export class MeetingInfoComponent {
     this.meetingService.joinMeeting(this.data.meeting, this.currentUserid)
       .subscribe(() => {
         this.dialogRef.close();
-        this.router.navigate(['user-meetings']);
+        this.router.navigate(['meetings']);
       });
   }
 

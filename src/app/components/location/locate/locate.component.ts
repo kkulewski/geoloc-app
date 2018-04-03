@@ -38,7 +38,7 @@ export class LocateComponent {
     if (username) {
       this.sendLocation();
     } else {
-      this.openDialog('Your location was recognised');
+      this.openDialog('Your location was recognized');
     }
   }
 
