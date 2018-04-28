@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { InfoComponent } from '../../modals/info/info.component';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-locate',
@@ -14,7 +15,7 @@ export class LocateComponent {
   isLoading = false;
 
   constructor(private http: HttpClient,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private notificationService: NotificationService) { }
 
   locate(): void {
     if (!navigator.geolocation) {

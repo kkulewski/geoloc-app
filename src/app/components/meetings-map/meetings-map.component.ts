@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { MeetingService } from '../../services/meeting.service';
 import { MeetingInfoComponent } from '../modals/meeting-info/meeting-info.component';
+import { NotificationService } from '../../services/notification.service';
 
 declare const google: any;
 
@@ -15,7 +16,7 @@ declare const google: any;
 export class MeetingsMapComponent implements OnInit, AfterViewInit {
 
   constructor(private dialog: MatDialog, private zone: NgZone,
-    private meetingService: MeetingService) {
+    private meetingService: MeetingService, private notificationService: NotificationService) {
     GoogleMapsLoader.KEY = environment.googleMapsApiKey;
   }
 
@@ -29,7 +30,7 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
     this.meetingService.getMeetings().subscribe((meetings) => {
       this.meetings = meetings;
       this.loadMapWithApi();
-    });
+    }, () => this.notificationService.showError());
   }
 
   private createMarkersFromMeetings() {

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { MeetingService } from '../../../services/meeting.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-meeting-create',
@@ -14,7 +15,8 @@ export class MeetingCreateComponent {
   constructor(private dialogRef: MatDialogRef<MeetingCreateComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Models.MeetingCreateData,
     private meetingService: MeetingService,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotificationService) {
   }
 
   name: string;
@@ -37,6 +39,10 @@ export class MeetingCreateComponent {
     this.meetingService.createMeeting(meeting).subscribe(() => {
       this.dialogRef.close();
       this.router.navigate(['meetings']);
+      this.notificationService.showNotification('Meeting created!');
+    }, () => {
+      this.dialogRef.close();
+      this.notificationService.showError();
     });
   }
 

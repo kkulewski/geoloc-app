@@ -1,5 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -22,9 +22,10 @@ export class RelationsService {
   public sendRequest(invitingUserName: string, invitedUserName: string) {
     const url = 'api/userrelation/send';
 
-    var relationRequest = new RelationRequest();
-    relationRequest.invitingUserName = invitingUserName;
-    relationRequest.invitedUserName = invitedUserName;
+    let relationRequest: RelationRequest = {
+      invitingUserName: invitingUserName,
+      invitedUserName: invitedUserName
+    };
 
     const body = JSON.stringify(relationRequest);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
