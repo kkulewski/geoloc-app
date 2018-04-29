@@ -23,6 +23,7 @@ import { RelationsComponent } from './components/relations/relations.component';
 import { environment } from '../environments/environment';
 
 import { HttpRouteInterceptor } from './http-interceptors/http-route-interceptor';
+import { HttpAuthInterceptor } from './http-interceptors/http-auth-interceptor';
 import { HttpModule } from '@angular/http';
 import { MeetingsMapComponent } from './components/meetings-map/meetings-map.component';
 import { InfoComponent } from './components/modals/info/info.component';
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpRouteInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRouteInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
