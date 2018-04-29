@@ -8,7 +8,8 @@ import { ServicesModule } from './services/services.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
    MatInputModule, MatProgressSpinnerModule, MatMenuModule,
-   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatExpansionModule } from '@angular/material';
+   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatExpansionModule,
+  MatSnackBarModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -81,6 +82,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatExpansionModule,
+    MatSnackBarModule,
     BrowserAnimationsModule
   ],
   providers: [

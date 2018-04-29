@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MeetingService } from '../../../services/meeting.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-meeting-info',
@@ -15,7 +16,8 @@ export class MeetingInfoComponent {
   constructor(private dialogRef: MatDialogRef<MeetingInfoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Models.MeetingInfoData,
     private meetingService: MeetingService,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotificationService) {
   }
 
   get date(): string {
@@ -27,8 +29,8 @@ export class MeetingInfoComponent {
   }
 
   get isAlreadyInMeeting(): boolean {
-    return this.data.meeting.participants.find(participant => participant.id === this.currentUserid) !== undefined
-     || this.isHost;
+    return this.data.meeting.participants.find(participant => participant.id === this.currentUserId) !== undefined
+      || this.isHost;
   }
 
   get participantsPresent(): boolean {
@@ -40,14 +42,17 @@ export class MeetingInfoComponent {
   }
 
   get isHost(): boolean {
-    return this.currentUserid === this.data.meeting.hostId;
+    return this.currentUserId === this.data.meeting.hostId;
   }
 
   onApprove() {
-    this.meetingService.joinMeeting(this.data.meeting, this.currentUserid)
+    this.meetingService.joinMeeting(this.data.meeting, this.currentUserId)
       .subscribe(() => {
         this.dialogRef.close();
         this.router.navigate(['meetings']);
+        this.notificationService.showNotification('You\'ve joined the meeting!');
+      }, () => {
+        this.notificationService.showError();
       });
   }
 
@@ -55,7 +60,7 @@ export class MeetingInfoComponent {
     this.dialogRef.close();
   }
 
-  private get currentUserid(): string {
+  private get currentUserId(): string {
     return localStorage.getItem('user_id');
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AccountService {
@@ -18,9 +19,9 @@ export class AccountService {
         return this.http.post('api/account/login', body, {headers});
     }
 
-    getUserName(id: string) {
+    getUserName(id: string): Observable<string> {
         const body = JSON.stringify(id);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post('api/account/username', body, {headers});
+        return this.http.post<string>('api/account/username', body, {headers});
     }
 }
