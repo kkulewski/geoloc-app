@@ -1,5 +1,4 @@
 import { Component, Inject, ElementRef, ViewChild, OnInit, NgZone } from '@angular/core';
-import { LocationService } from '../../services/location.service';
 import { MatDialog } from '@angular/material';
 import { MeetingCreateComponent } from '../modals/meeting-create/meeting-create.component';
 import GoogleMapsLoader = require('google-maps');
