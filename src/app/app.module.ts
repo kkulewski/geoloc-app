@@ -6,15 +6,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ServicesModule } from './services/services.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
-   MatInputModule, MatProgressSpinnerModule, MatMenuModule,
-   MatIconModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MatExpansionModule,
-  MatSnackBarModule } from '@angular/material';
+import {
+  MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
+  MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatDatepicker,
+  MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatSnackBarModule
+} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LocateComponent } from './components/location/locate/locate.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { MapComponent } from './components/map/map.component';
@@ -33,7 +33,6 @@ import { MeetingInfoComponent } from './components/modals/meeting-info/meeting-i
 
 const appRoutes: Routes = [
   { path: '', component: MapComponent },
-  { path: 'locate', component: LocateComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent},
@@ -51,7 +50,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    LocateComponent,
     RegisterComponent,
     LoginComponent,
     MapComponent,

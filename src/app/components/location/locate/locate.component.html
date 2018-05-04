@@ -1,8 +1,0 @@
-<div class="align-items-center">
-    <h1>Locate</h1>
-    <p>Hit the button to to get your coords.</p>
-    <div class="loading-indicator justify-content" *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
-    </div>
-    <button mat-raised-button (click)="locate()" [disabled]="isLoading">Locate</button>
-</div>
