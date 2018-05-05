@@ -5,33 +5,37 @@ export class StorageService {
 
   constructor() { }
 
+  private static readonly TOKEN = 'auth_token';
+  private static readonly ID = 'user_id';
+  private static readonly NAME = 'user_name';
+
   public get authToken() {
-    return localStorage.getItem('auth_token');
+    return localStorage.getItem(StorageService.TOKEN);
   }
 
   public set authToken(token: string) {
-    localStorage.setItem('auth_token', token);
+    localStorage.setItem(StorageService.TOKEN, token);
   }
 
   public get userId() {
-    return localStorage.getItem('user_id');
+    return localStorage.getItem(StorageService.ID);
   }
 
   public set userId(id: string) {
-    localStorage.setItem('user_id', id);
+    localStorage.setItem(StorageService.ID, id);
   }
 
   public get userName() {
-    return localStorage.getItem('user_name');
+    return localStorage.getItem(StorageService.NAME);
   }
 
   public set userName(name: string) {
-    localStorage.setItem('user_name', name);
+    localStorage.setItem(StorageService.NAME, name);
   }
 
   public clear() {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('user_name');
+    localStorage.removeItem(StorageService.TOKEN);
+    localStorage.removeItem(StorageService.ID);
+    localStorage.removeItem(StorageService.NAME);
   }
 }
