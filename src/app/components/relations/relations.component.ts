@@ -3,6 +3,7 @@ import { RelationsService } from '../../services/relations.service';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Observable } from 'rxjs/Observable';
 import { NotificationService } from '../../services/notification.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-relations',
@@ -17,23 +18,16 @@ export class RelationsComponent {
   requestUserName: string;
 
   constructor(private relationsService: RelationsService,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private storageService: StorageService) {
     this.getRelations();
-  }
-
-  get userId(): string {
-    return localStorage.getItem('user_id');
-  }
-
-  get userName(): string {
-    return localStorage.getItem('user_name');
   }
 
   getRelations() {
     forkJoin([
-      this.relationsService.getFriends(this.userId),
-      this.relationsService.getRequestsSent(this.userId),
-      this.relationsService.getRequestsReceived(this.userId)
+      this.relationsService.getFriends(this.storageService.userId),
+      this.relationsService.getRequestsSent(this.storageService.userId),
+      this.relationsService.getRequestsReceived(this.storageService.userId)
     ]).subscribe(results => {
       this.friends = results[0];
       this.requestsSent = results[1];
@@ -42,7 +36,7 @@ export class RelationsComponent {
   }
 
   send(invitedUserName: string) {
-    this.relationsService.sendRequest(this.userName, invitedUserName)
+    this.relationsService.sendRequest(this.storageService.userName, invitedUserName)
       .subscribe(e => this.getRelations(), () => this.notificationService.showError());
   }
 

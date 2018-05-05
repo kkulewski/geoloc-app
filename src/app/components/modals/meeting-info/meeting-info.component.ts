@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MeetingService } from '../../../services/meeting.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification.service';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-meeting-info',
@@ -17,7 +18,8 @@ export class MeetingInfoComponent {
     @Inject(MAT_DIALOG_DATA) public data: Models.MeetingInfoData,
     private meetingService: MeetingService,
     private router: Router,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private storageService: StorageService) {
   }
 
   get date(): string {
@@ -29,7 +31,7 @@ export class MeetingInfoComponent {
   }
 
   get isAlreadyInMeeting(): boolean {
-    return this.data.meeting.participants.find(participant => participant.id === this.currentUserId) !== undefined
+    return this.data.meeting.participants.find(participant => participant.id === this.storageService.userId) !== undefined
       || this.isHost;
   }
 
@@ -42,11 +44,11 @@ export class MeetingInfoComponent {
   }
 
   get isHost(): boolean {
-    return this.currentUserId === this.data.meeting.hostId;
+    return this.storageService.userId === this.data.meeting.hostId;
   }
 
   onApprove() {
-    this.meetingService.joinMeeting(this.data.meeting, this.currentUserId)
+    this.meetingService.joinMeeting(this.data.meeting, this.storageService.userId)
       .subscribe(() => {
         this.dialogRef.close(this.data.meeting.id);
         this.notificationService.showNotification('You\'ve joined the meeting!');
@@ -57,9 +59,5 @@ export class MeetingInfoComponent {
 
   onClose() {
     this.dialogRef.close();
-  }
-
-  private get currentUserId(): string {
-    return localStorage.getItem('user_id');
   }
 }

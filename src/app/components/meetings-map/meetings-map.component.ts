@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { MeetingService } from '../../services/meeting.service';
 import { MeetingInfoComponent } from '../modals/meeting-info/meeting-info.component';
 import { NotificationService } from '../../services/notification.service';
+import { StorageService } from '../../services/storage.service';
 
 declare const google: any;
 
@@ -16,7 +17,9 @@ declare const google: any;
 export class MeetingsMapComponent implements OnInit, AfterViewInit {
 
   constructor(private dialog: MatDialog, private zone: NgZone,
-    private meetingService: MeetingService, private notificationService: NotificationService) {
+    private meetingService: MeetingService,
+    private notificationService: NotificationService,
+    private storageService: StorageService) {
     GoogleMapsLoader.KEY = environment.googleMapsApiKey;
   }
 
@@ -56,8 +59,8 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
       if (joinedMeeting) {
         joinedMeeting.participants.push(
           ({
-            id: localStorage.getItem('user_id'),
-            email: localStorage.getItem('user_name'),
+            id: this.storageService.userId,
+            email: this.storageService.userName,
             firstName: null,
             lastName: null
           })
