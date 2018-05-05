@@ -48,8 +48,7 @@ export class MeetingInfoComponent {
   onApprove() {
     this.meetingService.joinMeeting(this.data.meeting, this.currentUserId)
       .subscribe(() => {
-        this.dialogRef.close();
-        this.router.navigate(['meetings']);
+        this.dialogRef.close(this.data.meeting.id);
         this.notificationService.showNotification('You\'ve joined the meeting!');
       }, () => {
         this.notificationService.showError();

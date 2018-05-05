@@ -51,6 +51,18 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
     let meeting = this.meetings.find(m => m.id === meetingId);
     this.dialog.open(MeetingInfoComponent, {
       data: { meeting }
+    }).afterClosed().subscribe(result => {
+      let joinedMeeting = this.meetings.find(m => m.id === result);
+      if (joinedMeeting) {
+        joinedMeeting.participants.push(
+          ({
+            id: localStorage.getItem('user_id'),
+            email: localStorage.getItem('user_name'),
+            firstName: null,
+            lastName: null
+          })
+        );
+      }
     });
   }
 
