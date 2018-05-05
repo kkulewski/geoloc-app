@@ -28,4 +28,10 @@ export class StorageService {
   public set userName(name: string) {
     localStorage.setItem('user_name', name);
   }
+
+  public clear() {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('user_name');
+  }
 }
