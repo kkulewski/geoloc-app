@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,25 +9,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router, private storageService: StorageService) { }
 
   get isUserLogged() {
-    return localStorage.getItem('user_name');
+    return this.username;
   }
 
   get username(): string {
-    return localStorage.getItem('user_name');
+    return this.storageService.userName;
   }
 
   logoutUser() {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('user_name');
+    this.storageService.clear();
     this.router.navigateByUrl('/');
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

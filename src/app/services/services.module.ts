@@ -4,6 +4,7 @@ import { RelationsService } from './relations.service';
 import { AccountService } from './account.service';
 import { MeetingService } from './meeting.service';
 import { NotificationService } from './notification.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NotificationService } from './notification.service';
     RelationsService,
     AccountService,
     MeetingService,
-    NotificationService
+    NotificationService,
+    StorageService
   ]
 })
 export class ServicesModule { }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { MeetingCreateComponent } from '../modals/meeting-create/meeting-create.component';
 import GoogleMapsLoader = require('google-maps');
 import { environment } from '../../../environments/environment';
+import { StorageService } from '../../services/storage.service';
 
 declare const google: any;
 
@@ -12,7 +13,7 @@ declare const google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(public dialog: MatDialog, private zone: NgZone) {
+  constructor(public dialog: MatDialog, private zone: NgZone, private storageService: StorageService) {
     GoogleMapsLoader.KEY = environment.googleMapsApiKey;
   }
 
@@ -42,7 +43,7 @@ export class MapComponent implements OnInit {
 
   private showMeetingModal(latitude: number, longitude: number) {
     this.dialog.open(MeetingCreateComponent, {
-      data: { longitude: longitude, latitude: latitude, userId: localStorage.getItem('user_id') }
+      data: { longitude: longitude, latitude: latitude, userId: this.storageService.userId }
     });
   }
 
