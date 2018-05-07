@@ -25,6 +25,7 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
+  private userLocationMarker: google.maps.Marker;
   private markers: google.maps.Marker[] = [];
   public meetings: Models.Meeting[];
 
@@ -33,6 +34,7 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
     this.meetingService.getMeetings().subscribe((meetings) => {
       this.meetings = meetings;
       this.loadMapWithApi();
+      this.addUserLocationMarker();
     }, () => this.notificationService.showError());
   }
 
@@ -76,6 +78,16 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
         zoom: 8
       });
       this.createMarkersFromMeetings();
+    });
+  }
+
+  private addUserLocationMarker() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.userLocationMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        map: this.map,
+        label: 'You'
+      });
     });
   }
 
