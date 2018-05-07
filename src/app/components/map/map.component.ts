@@ -19,6 +19,7 @@ export class MapComponent implements OnInit {
 
   @ViewChild('mapDiv') mapDiv: ElementRef;
   public map: google.maps.Map;
+  private userLocationMarker: google.maps.Marker;
   private markers: google.maps.Marker[] = [];
   private clickListener: google.maps.MapsEventListener;
 
@@ -35,6 +36,7 @@ export class MapComponent implements OnInit {
         });
       });
     });
+    this.addUserLocationMarker();
   }
 
   private addMarker(location) {
@@ -44,6 +46,16 @@ export class MapComponent implements OnInit {
   private showMeetingModal(latitude: number, longitude: number) {
     this.dialog.open(MeetingCreateComponent, {
       data: { longitude: longitude, latitude: latitude, userId: this.storageService.userId }
+    });
+  }
+
+  private addUserLocationMarker() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.userLocationMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+        map: this.map,
+        label: 'You'
+      });
     });
   }
 
