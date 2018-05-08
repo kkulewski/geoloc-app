@@ -40,7 +40,9 @@ export class MapComponent implements OnInit {
   }
 
   private addMarker(location) {
-    this.showMeetingModal(location.lat(), location.lng());
+    if (this.storageService.userName) {
+      this.showMeetingModal(location.lat(), location.lng());
+    }
   }
 
   private showMeetingModal(latitude: number, longitude: number) {
