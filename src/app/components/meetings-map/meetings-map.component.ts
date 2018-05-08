@@ -75,7 +75,10 @@ export class MeetingsMapComponent implements OnInit, AfterViewInit {
     GoogleMapsLoader.load(g => {
       this.map = new google.maps.Map(this.mapDiv.nativeElement, {
         center: { lat: 53.921, lng: 19.037 },
-        zoom: 8
+        zoom: 8,
+        disableDefaultUI: true,
+        scaleControl: true,
+        zoomControl: true
       });
       this.createMarkersFromMeetings();
     });
