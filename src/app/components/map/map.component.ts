@@ -28,7 +28,9 @@ export class MapComponent implements OnInit {
       this.map = new google.maps.Map(this.mapDiv.nativeElement, {
         center: { lat: 53.921, lng: 19.037 },
         zoom: 8,
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        scaleControl: true,
+        zoomControl: true
       });
       this.clickListener = this.map.addListener('click', (event) => {
         this.zone.run(() => {
