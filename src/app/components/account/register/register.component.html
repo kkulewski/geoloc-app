@@ -1,7 +1,3 @@
-<div class="loading-indicator justify-content" *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-</div>
-
 <form #f="ngForm" (ngSubmit)="registerUser(f)" class="offset-lg-4 col-lg-4 offset-md-4 col-md-4 offset-sm-3 col-sm-6">
 
     <div class="form-group">
@@ -29,3 +25,7 @@
     </div>
 
 </form>
+
+<div class="loading-indicator justify-content" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+</div>
