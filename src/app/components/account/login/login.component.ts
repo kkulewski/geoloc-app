@@ -14,11 +14,14 @@ import { StorageService } from '../../../services/storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isLoading = false;
+
   constructor(private router: Router, private accountService: AccountService,
     private notificationService: NotificationService, private storageService: StorageService) {
   }
 
   loginUser({ value, valid }: { value: ILoginModel, valid: boolean }) {
+    this.isLoading = true;
     if (valid) {
       this.accountService.login(value.email, value.password)
         .subscribe(
@@ -26,10 +29,12 @@ export class LoginComponent {
             this.storageService.authToken = response.auth_token;
             this.storageService.userId = response.id;
             this.getUserName(response.id);
+            this.isLoading = false;
             this.router.navigateByUrl('/');
             this.notificationService.showNotification('Logged in!');
           },
           (error: HttpErrorResponse) => {
+            this.isLoading = false;
             this.notificationService.showError();
           });
     }
@@ -48,6 +53,7 @@ export class LoginComponent {
     this.storageService.clear();
   }
 }
+
 export interface ILoginSuccessful {
   id: string;
   auth_token: string;
