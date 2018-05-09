@@ -8,19 +8,19 @@ export class RelationsService {
   constructor(private http: HttpClient) { }
 
   public getFriends(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>('api/userrelation/' + userId);
+    return this.http.get<Models.Relation[]>('api/relation/' + userId);
   }
 
   public getRequestsSent(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>('api/userrelation/sent/' + userId);
+    return this.http.get<Models.Relation[]>('api/relation/sent/' + userId);
   }
 
   public getRequestsReceived(userId: string): Observable<Models.Relation[]> {
-    return this.http.get<Models.Relation[]>('api/userrelation/received/' + userId);
+    return this.http.get<Models.Relation[]>('api/relation/received/' + userId);
   }
 
   public sendRequest(invitingUserName: string, invitedUserName: string) {
-    const url = 'api/userrelation/send';
+    const url = 'api/relation/send';
 
     let relationRequest: RelationRequest = {
       invitingUserName: invitingUserName,
@@ -33,7 +33,7 @@ export class RelationsService {
   }
 
   public acceptRequest(relationId: string) {
-    const url = 'api/userrelation/accept';
+    const url = 'api/relation/accept';
     const body = JSON.stringify(relationId);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(url, body, {headers});
