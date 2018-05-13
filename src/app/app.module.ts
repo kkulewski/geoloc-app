@@ -9,7 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatFormFieldModule, MatDialogModule, MatListModule, MatCardModule,
   MatInputModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatDatepicker,
-  MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatSnackBarModule
+  MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatSnackBarModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     BrowserAnimationsModule
   ],
   providers: [

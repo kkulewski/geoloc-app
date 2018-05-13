@@ -1,1 +1,13 @@
-<div #mapDiv id="map"></div>
+<div class="container">
+    <div #mapDiv id="map"></div>
+    <div id="mapMenu">
+        <mat-card>
+            <h3>Options</h3>
+            <section>
+                <mat-checkbox [(ngModel)]="showFriendsMeetings">Friends meetings</mat-checkbox>
+                <mat-checkbox [(ngModel)]="showOldMeetings">Old meetings</mat-checkbox>
+                <mat-checkbox [(ngModel)]="showUserMeetings">My meetings</mat-checkbox>
+            </section>
+        </mat-card>
+    </div>    
+</div>
