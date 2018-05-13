@@ -5,11 +5,6 @@
         <span>Map</span>
     </button>
 
-    <button mat-button [routerLink]="['/locate']">
-        <mat-icon>place</mat-icon>
-        <span>Locate</span>
-    </button>
-
     <button mat-button [matMenuTriggerFor]="accountSubmenu" *ngIf="!isUserLogged">
         <mat-icon>account_box</mat-icon>
         <span>Account</span>
@@ -21,7 +16,7 @@
     </button>
     
     <button mat-button [routerLink]="['/meetings']" *ngIf="isUserLogged">
-        <mat-icon>person_add</mat-icon>
+        <mat-icon>place</mat-icon>
         <span>Meetings</span>
      </button>
 

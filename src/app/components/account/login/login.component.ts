@@ -6,6 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { NotificationService } from '../../../services/notification.service';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,22 +14,27 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isLoading = false;
+
   constructor(private router: Router, private accountService: AccountService,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService, private storageService: StorageService) {
   }
 
   loginUser({ value, valid }: { value: ILoginModel, valid: boolean }) {
+    this.isLoading = true;
     if (valid) {
       this.accountService.login(value.email, value.password)
         .subscribe(
           (response: ILoginSuccessful) => {
-            localStorage.setItem('auth_token', response.auth_token);
-            localStorage.setItem('user_id', response.id);
+            this.storageService.authToken = response.auth_token;
+            this.storageService.userId = response.id;
             this.getUserName(response.id);
+            this.isLoading = false;
             this.router.navigateByUrl('/');
             this.notificationService.showNotification('Logged in!');
           },
           (error: HttpErrorResponse) => {
+            this.isLoading = false;
             this.notificationService.showError();
           });
     }
@@ -37,18 +43,17 @@ export class LoginComponent {
   getUserName(id: string) {
     this.accountService.getUserName(id)
       .subscribe(result =>  {
-        localStorage.setItem('user_name', result);
+        this.storageService.userName = result;
       }, error => {
         this.notificationService.showError();
       });
   }
 
   logoutUser() {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('user_name');
+    this.storageService.clear();
   }
 }
+
 export interface ILoginSuccessful {
   id: string;
   auth_token: string;

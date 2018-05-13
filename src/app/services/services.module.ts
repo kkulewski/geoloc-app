@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocationService } from './location.service';
 import { RelationsService } from './relations.service';
 import { AccountService } from './account.service';
 import { MeetingService } from './meeting.service';
 import { NotificationService } from './notification.service';
+import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [
@@ -13,10 +13,10 @@ import { NotificationService } from './notification.service';
   declarations: [],
   providers: [
     RelationsService,
-    LocationService,
     AccountService,
     MeetingService,
-    NotificationService
+    NotificationService,
+    StorageService
   ]
 })
 export class ServicesModule { }

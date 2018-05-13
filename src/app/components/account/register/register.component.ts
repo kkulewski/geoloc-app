@@ -6,9 +6,11 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  isLoading = false;
 
   constructor(private router: Router,
       private notificationService: NotificationService,
@@ -16,12 +18,15 @@ export class RegisterComponent {
   }
 
   registerUser({ value, valid }: { value: IRegisterModel, valid: boolean }) {
+    this.isLoading = true;
     if (valid) {
       this.accountService.register(value.email, value.password, value.firstName, value.lastName)
         .subscribe(() => {
+          this.isLoading = false;
           this.router.navigate(['/login']);
           this.notificationService.showNotification('Register successful!');
         }, () => {
+          this.isLoading = false;
           this.notificationService.showError();
         });
     }

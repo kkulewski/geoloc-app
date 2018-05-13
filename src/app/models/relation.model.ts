@@ -3,7 +3,7 @@ module Models {
         id: string;
         invitingUserId: string;
         invitedUserId: string;
-        userRelationStatus: string;
+        relationStatus: string;
         invitingUserName: string;
         invitedUserName: string;
     }
