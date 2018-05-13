@@ -1,3 +1,7 @@
+.container {
+    position: relative;
+}
+
 #map {
     height: 100%;
     width: 100%;
@@ -5,4 +9,22 @@
     position: absolute;
     top: 0;
     z-index:0;
+}
+
+#mapMenu {
+    position: absolute;
+    right: 0px;
+    z-index: 15;
+    max-width: 180px;
+    min-height: 250px;
+}
+
+mat-card {
+    min-height: 175px;
+    bottom: 0px;
+}
+
+section {
+    text-align: left;
+    height: 30px;
 }
