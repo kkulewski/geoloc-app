@@ -79,7 +79,9 @@ export class MeetingsMapComponent implements OnInit {
                 .map(meeting => meeting.id));
         }
         if (this._showOldMeetings) {
-            meetingIds = meetingIds.concat(this.meetings.filter(meeting => new Date(meeting.date) < new Date())
+            let yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            meetingIds = meetingIds.concat(this.meetings.filter(meeting => new Date(meeting.date) < yesterday)
                 .map(meeting => meeting.id));
         }
 
@@ -92,7 +94,9 @@ export class MeetingsMapComponent implements OnInit {
         }
 
         if (!this._showFriendsMeetings && !this._showOldMeetings && !this._showUserMeetings) {
-            meetingIds = this.meetings.filter(meeting => new Date(meeting.date) >= new Date(new Date().getDate() + 1))
+            let yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            meetingIds = this.meetings.filter(meeting => new Date(meeting.date) >= yesterday)
                 .map(meeting => meeting.id);
         }
         this.markers.filter(marker => meetingIds.includes(marker.meetingId))
@@ -113,7 +117,9 @@ export class MeetingsMapComponent implements OnInit {
                 meetingId: meeting.id,
                 map: this.map
             });
-            if (new Date(meeting.date) < new Date(new Date().getDate() - 1)) {
+            let yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            if (new Date(meeting.date) < yesterday) {
                 marker.setMap(null);
             }
             this.markers.push(marker);

@@ -25,6 +25,9 @@ export class MeetingCreateComponent {
   date: Date;
 
   onApprove(): void {
+    let month = this.date.getMonth();
+    this.date.setUTCDate(this.date.getDate());
+    this.date.setUTCMonth(month);
     let meeting: Models.Meeting = {
       id: null,
       longitude: this.data.longitude,
